@@ -1,16 +1,28 @@
-function preload() {
-	// put preload code here
-}
+let angle = 0; //angolo scale
+let angle2 = 0; //angolo move
+let diameter = 300; //diametro dell'oggetto palletta
+
+let pallette = []; //array degli oggetti palletta
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-	// put setup code here
-	const message = "This is a template repository\nfor the course elective Creative Coding\nCommunication Design, Politecnico di Milano";
-	textAlign(CENTER, CENTER);
-  textSize(16)
-	text(message, width/2, height/2);
+  createCanvas(windowWidth, windowHeight);
+  for (let i = 0; i < 300; i++) {
+    //numero di pallette
+    let x = random(width);
+    let y = random(height);
+    pallette[i] = new Palletta(x, y);
+  }
 }
 
 function draw() {
-	// put drawing code here
+  background(0,20);
+
+  for (let i = 0; i < pallette.length; i++) {
+    pallette[i].scale();
+    pallette[i].move();
+    pallette[i].border();
+    pallette[i].show();
+  }
+  angle += 0.10; //velocità scale
+  angle2 += 0.10; //velocità move (arco del movimento)
 }
